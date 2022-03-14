@@ -3,9 +3,9 @@ cp /usr/share/zoneinfo/Asia/Dubai /etc/localtime
 
 #Database Details
 db_host='82.223.165.66';
-db_user='nishatadmin_bwhnishat';
+db_user='nishatraji_bwh';
 db_pass='@@@@F1r3n3t';
-db_name='nishatadmin_bwhnishat';
+db_name='nishatraji_bwh';
 
 install_require()
 {
