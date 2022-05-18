@@ -5,10 +5,10 @@
 
 NAMEVPN="NISHAT VPN";
 WEBSCRIPT="www.nishatSOFT.XYZ";
-DBHOST="82.223.165.66";
-DBNAME="nishatad_nishat";
-DBUSER="nishatad_nishat";
-DBPASS="@@Nishat123";
+DBHOST="64.20.56.162";
+DBNAME="matrixvp_nishatpanel";
+DBUSER="matrixvp_nishatpanel";
+DBPASS="panelnishat@";
 APISYNCLOGIN="auth";
 APISYNC="snfx";
 SERVERZ=$(curl -4s http://ipinfo.io/org);
@@ -347,14 +347,14 @@ service dropbear restart
 
 # OpenVPN Login
 cd ~
-wget -O /etc/openvpn/login.sh "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/login.sh"
+wget -O /etc/openvpn/login.sh "http://$WEBSCRIPT/signin/script/ubuntu16/login.sh"
 sed -i 's/\r$//' /etc/openvpn/login.sh
 echo \> Done!
 sleep 1
 clear
 chmod 755 /etc/openvpn/*
 chmod 755 /etc/openvpn/login.sh
-sed -i "s/APILink/https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/g" /etc/openvpn/login.sh
+sed -i "s/APILink/$WEBSCRIPT/g" /etc/openvpn/login.sh
 sed -i "s/APIKey/$APISYNC/g" /etc/openvpn/login.sh
 sed -i "s/ServerPrefix/PHServer/g" /etc/openvpn/login.sh
 sed -i "s/authKey/$APISYNCLOGIN/g" /etc/openvpn/login.sh
@@ -365,11 +365,11 @@ chmod 755 /etc/openvpn/login.sh
 
 ## Download & Setup SOCKS Proxy
 apt-get install screen -y
-wget -O /root/socksDirect.py "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/socksDirect.py"
+wget -O /root/socksDirect.py "http://$WEBSCRIPT/signin/script/ubuntu16/socksDirect.py"
 chmod +x /root/socksDirect.py
 screen -d -m python socksDirect.py
 
-wget -O /root/socksDirect2.py "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/socksDirect2.py"
+wget -O /root/socksDirect2.py "http://$WEBSCRIPT/signin/script/ubuntu16/socksDirect2.py"
 chmod +x /root/socksDirect2.py
 screen -d -m python socksDirect2.py
 
@@ -559,7 +559,7 @@ $mysqli->close();
 SSHPanel1
 
 cd ~
-wget -O /root/update.sh "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/update.sh"
+wget -O /root/update.sh "http://$WEBSCRIPT/signin/script/ubuntu16/update.sh"
 sed -i 's/\r$//' /root/update.sh
 dos2unix /root/update.sh
 chmod +x /root/update.sh
@@ -589,7 +589,7 @@ crontab -l | { cat; echo "* * * * * sudo pkill dropbear && sudo /etc/init.d/drop
 crontab -l | { cat; echo "0 0 * * * sleep 5 && reboot"; } | crontab -
 
 # Disabled SSH Multiple Login
-wget -O /home/multilogin "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/multilogin"
+wget -O /home/multilogin "http://$WEBSCRIPT/signin/script/ubuntu16/multilogin"
 chmod 755 /home/multilogin
 echo -e "* \t * *\troot bash /home/multilogin 1" >> "/etc/cron.d/multilogin"
 
@@ -608,8 +608,8 @@ clear
 
 # install stunnel4 From Premium Script
 apt-get install stunnel4 -y
-wget -O /etc/stunnel/stunnel.pem "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/stunnel.pem"
-wget -O /etc/stunnel/stunnel.conf "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/stunnel.conf"
+wget -O /etc/stunnel/stunnel.pem "http://$WEBSCRIPT/signin/script/ubuntu16/stunnel.pem"
+wget -O /etc/stunnel/stunnel.conf "http://$WEBSCRIPT/signin/script/ubuntu16/stunnel.conf"
 sed -i $MYIP2 /etc/stunnel/stunnel.conf
 sed -i 's/ENABLED=0/ENABLED=1/g' /etc/default/stunnel4
 service stunnel4 restart
@@ -617,7 +617,7 @@ service stunnel4 restart
 # install ddos deflate
 cd
 apt-get install dnsutils dsniff -y
-wget -O /root/ddos-deflate-master.zip "https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/ddos-deflate-master.zip"
+wget -O /root/ddos-deflate-master.zip "http://$WEBSCRIPT/signin/script/ubuntu16/ddos-deflate-master.zip"
 unzip ddos-deflate-master.zip
 cd ddos-deflate-master
 bash ./install.sh
@@ -831,7 +831,7 @@ sudo apt update
 sudo apt install squid3=3.3.8-1ubuntu6 squid=3.3.8-1ubuntu6 squid3-common=3.3.8-1ubuntu6 -y
 
 #Install missing init.d script
-curl -O https://raw.githubusercontent.com/nishatvpn/nishatsoft.xyz/main/squid3
+curl -O http://$WEBSCRIPT/signin/script/ubuntu16/squid3
 sudo cp squid3 /etc/init.d/
 sudo chmod +x /etc/init.d/squid3
 sudo update-rc.d squid3 defaults
