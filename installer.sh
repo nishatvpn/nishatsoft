@@ -5,10 +5,10 @@
 
 NAMEVPN="NISHAT VPN";
 WEBSCRIPT="www.nishatSOFT.XYZ";
-DBHOST="64.20.56.162";
-DBNAME="matrixvp_nishatpanel";
-DBUSER="matrixvp_nishatpanel";
-DBPASS="panelnishat@";
+DBHOST="82.223.165.66";
+DBNAME="nishatad_nishatl";
+DBUSER="nishatad_nishat";
+DBPASS="@@Nishat123";
 APISYNCLOGIN="auth";
 APISYNC="snfx";
 SERVERZ=$(curl -4s http://ipinfo.io/org);
